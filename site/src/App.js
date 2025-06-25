@@ -10,8 +10,8 @@ function App() {
   useEffect(() => {
     // 두 데이터를 모두 담고 있는 새 API 엔드포인트 호출
     const fetchData = () => {
-      // fetch('http://127.0.0.1:5000/api/market_data')
-      fetch('http://158.180.79.70:5000/api/market_data')
+      fetch('http://59.6.151.56:5000/api/market_data')
+      // fetch('http://172.30.1.99:5000/api/market_data')
         .then(response => {
           if (!response.ok) {
             throw new Error('네트워크 응답이 올바르지 않습니다.');

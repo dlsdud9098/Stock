@@ -2,6 +2,9 @@ import requests
 import json
 import pandas as pd
 
+def format_time(time_string):
+    return f"{time_string[:2]}:{time_string[2:4]}:{time_string[4:]}"
+
 # 거래원순간거래량요청
 def fn_ka10052(token, data, cont_yn='N', next_key=''):
     # 1. 요청할 API URL
@@ -32,6 +35,7 @@ def fn_ka10052(token, data, cont_yn='N', next_key=''):
         df = df[~df['stk_nm'].str.contains('KODEX', case=False, na=False)]
         df = df[['tm','stk_cd', 'stk_nm','trde_ori_nm','tp','mont_trde_qty','cur_prc','acc_netprps', 'pred_pre','flu_rt']]
         df.columns = ['시간','종목코드', '종목명', '거래원명', '구분', '순간거래량', '현재가', '누적순매수', '전일대비','등락률']
+        df['시간'] = df['시간'].apply(format_time)
         df['종목코드'] = df['종목코드'].map(lambda x: x.replace('_AL', ''))
 
         idx = df.groupby(by='종목명')['누적순매수'].idxmax()

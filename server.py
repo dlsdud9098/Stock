@@ -17,21 +17,25 @@ def get_keys():
     
     appkey = keys.get('appkey', '')
     secretkey = keys.get('secretkey', '')
-    token = keys.get('token', '')
+    # token = keys.get('token', '')
 
-    if not token:
-        token = get_token(appkey, secretkey)
-        with open(path, 'w', encoding='utf-8') as f:
-            keys = json.dump({'appkey': appkey, 'secretkey': secretkey, 'token': token},f)
+    # print(appkey)
+    # print(secretkey)
 
-    return appkey, secretkey, token
+    # if not token:
+    token = get_token(appkey, secretkey)
+    # print(token)
+    # with open(path, 'w', encoding='utf-8') as f:
+    #     keys = json.dump({'appkey': appkey, 'secretkey': secretkey, 'token': token},f)
+
+    return token
 
 # API 엔드포인트 정의
 @app.route('/api/market_data')
 def get_data():
     # DataFrame을 JSON 형태로 변환하여 응답
     # orient='records'는 [{column: value}, {column: value}, ...] 형태의 배열로 만듭니다.
-    appkey, secretkey, token = get_keys()
+    token = get_keys()
     df2, df = get_data2_main(token)
 
 
@@ -44,5 +48,6 @@ def get_data():
 
 # 서버 실행
 if __name__ == '__main__':
+    # get_keys()
     # host='0.0.0.0'은 외부에서도 접속 가능하게 합니다.
     app.run(host='0.0.0.0', port=5000, debug=True)

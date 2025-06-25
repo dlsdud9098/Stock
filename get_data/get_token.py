@@ -14,14 +14,13 @@ def fn_au10001(data):
     }
 
     response = requests.post(url, headers=headers, json=data)
-
+    # print(response.json())
     data = response.json()['token']
     
     return data
 
 # def get_token():
 def get_token(appkey, secretkey):
-    
     params = {
         'grant_type': 'client_credentials',  # grant_type
         'appkey': appkey,  # 앱키
@@ -30,6 +29,7 @@ def get_token(appkey, secretkey):
 
     token = fn_au10001(data=params)
 
+    # print(token)
     return token
 
 if __name__ == '__main__':
