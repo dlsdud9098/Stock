@@ -5,8 +5,14 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "bs4>=0.0.2",
+    "fake-useragent>=2.2.0",
     "flask>=3.1.1",
     "flask-cors>=6.0.1",
+    "ipykernel>=6.29.5",
+    "lxml>=6.0.0",
     "pandas>=2.3.0",
+    "parmap>=1.7.0",
     "requests>=2.32.4",
+    "tqdm>=4.67.1",
 ]
